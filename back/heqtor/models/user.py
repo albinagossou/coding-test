@@ -6,6 +6,11 @@ from .company import Company
 
 
 class User(Base, IdPkMixin):
+    # Supprimer le mot de passe
+    def get_small_data(self):
+        dupwd = super.get_small_data()
+        del dupwd['password']
+        return dupwd
     email = Column(String(50), nullable=False, unique=True)
     password = Column(String(100), nullable=False)
     first_name = Column(String(50), nullable=False)
